@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Q7",
+            "request": "launch",
+            "mainClass": "com.company.Q7",
+            "projectName": "idekanymore_6b3b45fe"
+        },
+        {
+            "type": "java",
+            "name": "Launch Q3",
+            "request": "launch",
+            "mainClass": "com.company.Q3",
+            "projectName": "idekanymore_6b3b45fe"
+        },
+        {
+            "type": "java",
+            "name": "Launch Q6",
+            "request": "launch",
+            "mainClass": "com.company.Q6",
+            "projectName": "idekanymore_6b3b45fe"
+        },
+        {
+            "type": "java",
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "com.company.Main",

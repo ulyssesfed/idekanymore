@@ -5,62 +5,52 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Q2 {
-    File file = new File("src/com/company/words.txt");
+    File file = new File("src/com/company/words.txt"); //creates a file object
     public static void main(String[] args){
-        //put the content of word.txt int an array of strings
-        String[] words = getFile();
-        String characters = Main.getString("Enter the characters: ");
-        //split the characters into an array of characters
-        char[] chars = characters.toCharArray();
-        //find every possible word that can be made from the characters
-        for (int i = 0; i < words.length; i++){
-            if (isWord(chars, words[i])){
-                System.out.println(words[i]);
+        String[] words = getFile(); //calls the getFile method
+        String characters = Main.getString("Enter the characters: "); //gets the characters from the user
+        char[] chars = characters.toCharArray(); //converts the characters to an array of characters
+        for (int i = 0; i < words.length; i++){ //loops through the array of words
+            if (isWord(chars, words[i])){//checks if the word is a word
+                System.out.println(words[i]);//prints the word if it is a word
             }
         }
 
-        Main.menu();
+        Main.menu(); //calls the menu method
         
     }
 
-    private static boolean isWord(char[] chars, String word){
-        //split the word into an array of characters
-        char[] wordChars = word.toCharArray();
-        //check if the word can be made from the characters
-        for (int i = 0; i < wordChars.length; i++){
-            if (!isChar(chars, wordChars[i])){
-                return false;
+    private static boolean isWord(char[] chars, String word){ //checks if the word is a word
+        char[] wordChars = word.toCharArray(); //converts the word to an array of characters
+        for (int i = 0; i < wordChars.length; i++){//loops through the array of characters in the word
+            if (!isChar(chars, wordChars[i])){//checks if the character is in the array of characters
+                return false;//returns false if the character is not in the array of characters
             }
         }
-        return true;
+        return true;//returns true if the word is a word
     }
 
-    private static boolean isChar(char[] chars, char c){
-        //check if the character is in the array of characters
-        for (int i = 0; i < chars.length; i++){
-            if (chars[i] == c){
-                return true;
+    private static boolean isChar(char[] chars, char c){ //checks if the character is in the array of characters
+        for (int i = 0; i < chars.length; i++){ //loops through the array of characters
+            if (chars[i] == c){ //checks if the character is in the array of characters
+                return true; //returns true if the character is in the array of characters
             }
         }
-        return false;
+        return false; //returns false if the character is not in the array of characters
     }
-    public static String[] getFile(){
-        //read the file
-        File file = new File("src/com/company/words.txt");
-        //get the number of lines in the file
-        int lines = 25487;
-        //create an array of strings with the number of lines
-        String[] words = new String[lines];
-        //read the file line by line and put it in the array
-        try {
-            Scanner scanner = new Scanner(file);
-            for (int i = 0; i < lines; i++) {
-                words[i] = scanner.nextLine();
+    public static String[] getFile(){ //gets the words from the file
+        File file = new File("src/com/company/words.txt"); //creates a file object
+        int lines = 25487; //the number of lines in the file
+        String[] words = new String[lines]; //creates an array of words
+        try { //tries to get the words from the file
+            Scanner scanner = new Scanner(file); //creates a scanner object
+            for (int i = 0; i < lines; i++) { //loops through the file
+                words[i] = scanner.nextLine(); //gets the words from the file
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) { //catches the exception if the file is not found
+            e.printStackTrace(); //prints the stack trace
         }
-        return words;
+        return words; //returns the array of words
     }
     
 
