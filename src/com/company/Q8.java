@@ -17,7 +17,7 @@ public class Q8 {
             double hoursPerDay = Main.getDouble("enter the number of hours you work per day"); // gets the number of hours worked per day from the user
             double daysworked = Main.getDouble("enter the number of days you worked per week"); // gets the number of hours worked from the user
             int daysOff = Main.getInt("enter the number of days you have taken off through the year"); // gets the number of days off from the user
-            income = (hourlywage * ((daysworked*hoursPerDay)*52)) - (hourlywage*hoursPerDay)*daysOff; // calculates the income
+            income = (hourlywage * ((daysworked*hoursPerDay)*52)+hourlywage*hoursPerDay) - (hourlywage*hoursPerDay)*daysOff; // calculates the income
         } else if (answer.equals("annual")) { // if the answer is annual
             income = Main.getDouble("enter your annual wage"); // gets the annual wage from the user
         } else { // if the answer is not hourly or annual

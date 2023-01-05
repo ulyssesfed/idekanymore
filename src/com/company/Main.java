@@ -4,35 +4,28 @@ import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class Main {
-    private static String type;
-
     static int loginfails = 0;
 
     public static void main(String[] args) {
+    loginLoop();
+}
 
+public static void loginLoop() {
+    int loginfails = 0;
+    while (loginfails < 3) {
         if (login(getString("username"), getString("Password: "))) {
-            System.out.println("hello " + type);
-            menu(); // if the login is successful, the menu is called
-
+            menu();
         } else {
-            System.out.println("Login Failed");
-            loginfails++; // increments the number of login fails
-            if (loginfails == 3) {// if the number of login fails is 3, the program exits
-                System.out.println("Too many failed attempts");
-                System.exit(0);// exits the program
-            } else {
-                main(args);// if the number of login fails is less than 3, the program restarts
-            }
-
+            loginfails++;
         }
-
     }
+    System.exit(0);
+}
 
     static int getInt(String prompt) { // gets an integer from the user
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
         return scanner.nextInt();
-
     }
 
     static String getString(String prompt) { // gets a string from the user
@@ -55,11 +48,11 @@ public class Main {
         };
         for (int i = 0; i < users.length; i++) { // loops through the array of users
             if (users[i][0].equals(username) && users[i][1].equals(password)) { // checks if the username and password
-                                                                                // match
-                type = users[i][0]; // sets the type of user
+                                                                                System.out.println("User " + username + " logged in."); // logs the user in
                 return true; // returns true if the username and password match
             }
         }
+        System.out.println("User " + username + " failed to log in."); // logs that the user failed to log in
         return false; // if the username and password don't match, it returns false
 
     }
@@ -79,7 +72,6 @@ public class Main {
         System.out.println("|________________________________|");
         String choice = getString("Enter your choice: "); // gets the users choice
         choice(choice); // calls the choice method
-
     }
     private static void choice(String choice){
         String className = "com.company.Q" + choice;
