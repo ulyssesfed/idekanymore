@@ -1,5 +1,6 @@
 package com.company;
 
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class Main {
@@ -76,44 +77,36 @@ public class Main {
         System.out.println("| 8. Tax calculator              |");
         System.out.println("| 9. Exit                        |");
         System.out.println("|________________________________|");
-        int choice = getInt("Enter your choice: "); // gets the users choice
+        String choice = getString("Enter your choice: "); // gets the users choice
         choice(choice); // calls the choice method
 
     }
+    private static void choice(String choice){
+        String className = "com.company.Q" + choice;
 
-    private static void choice(int choice) { // the choice method
-        switch (choice) {
-            case 1:
-                Q1.main(null);
-                break;
-            case 2:
-                Q2.main(null);
-                break;
-            case 3:
-                Q3.main(null);
-                break;
-            case 4:
-                Q4.main(null);
-                break;
-            case 5:
-                Q5.main(null);
-                break;
-            case 6:
-                Q6.main(null);
-                break;
-            case 7:
-                Q7.main(null);
-                break;
-            case 8:
-                Q8.main(null);
-                break;
-            case 9:
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid choice");
-                menu();
-        } // there is almost certainly a better way to do this, but I don't know it
+        if (choice.equals("9")) {
+            System.exit(0);
+        }
+
+        try {
+            // Load the class with the specified name
+            Class<?> cls = Class.forName(className);
+
+            // Create an instance of the class
+            Object obj = cls.getDeclaredConstructor().newInstance();
+
+            // Find the method with the "run" name and no arguments
+            Method method = cls.getDeclaredMethod("run");
+
+            // Invoke the "run" method on the instance
+            method.invoke(obj);
+            //have the menu method called again if an invalid choice is made
+        } catch (ClassNotFoundException e) {
+            System.err.println("Invalid choice");
+            menu();
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }

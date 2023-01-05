@@ -1,6 +1,11 @@
 package com.company;
 
 public class Q8 {
+
+
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args) {
         // tax calculator for the uk that takes into account the tax free allowance and the tax bands and allows the user to enter the amount of income
 

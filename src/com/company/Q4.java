@@ -1,6 +1,10 @@
 package com.company;
 
 public class Q4 {
+
+    public static void run(){
+        main(null);
+    }
 public static void main(String[] args){
     //quadratic solver
     double a = Main.getDouble("Enter the value of a");

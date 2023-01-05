@@ -1,6 +1,10 @@
 package com.company;
 
 public class Q1{
+
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args){
         int x = Main.getInt("enter the first number");
         int y = Main.getInt("enter the second number");

@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Q2 {
+
+    public static void run(){
+        main(null);
+    }
+    
     File file = new File("src/com/company/words.txt"); //creates a file object
     public static void main(String[] args){
         String[] words = getFile(); //calls the getFile method

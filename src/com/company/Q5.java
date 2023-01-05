@@ -3,6 +3,10 @@ package com.company;
 import java.util.Random;
 
 public class Q5 {
+
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args) {
         Random rand = new Random(); //creates a random object
         var password = ""; //creates a string for the password

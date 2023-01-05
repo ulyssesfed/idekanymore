@@ -1,6 +1,10 @@
 package com.company;
 
 public class Q3 {
+
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args){
         char[][] board = new char[3][3]; //creates a 3x3 array
         for (int i = 0; i < 3; i++){ //loops through the rows

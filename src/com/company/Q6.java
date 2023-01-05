@@ -1,6 +1,11 @@
 package com.company;
 
 public class Q6 {
+
+
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args) {
         int n = Main.getInt("Enter the number of terms"); //gets the number of terms from the user
         int a = 0; //creates a variable for the first term

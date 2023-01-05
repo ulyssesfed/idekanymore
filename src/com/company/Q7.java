@@ -1,6 +1,10 @@
 package com.company;
 
 public class Q7 {
+
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args) {
         int n = Main.getInt("Enter the number of rows"); //gets the number of rows from the user
         int[][] pascal = new int[n][]; //creates a 2d array with n rows
