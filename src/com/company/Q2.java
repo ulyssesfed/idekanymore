@@ -10,7 +10,9 @@ import java.util.Scanner;
 import static com.company.Main.menu;
 
 public class Q2 {
-
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args) {
         String[] words = getFile();
         String characters = Main.getString("Enter the characters: ");

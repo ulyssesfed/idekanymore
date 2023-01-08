@@ -3,7 +3,6 @@ package com.company;
 import java.util.Random;
 
 public class Q5 {
-
     public static void run(){
         main(null);
     }
@@ -24,11 +23,12 @@ public class Q5 {
     }
 
     private static String generatePassword(int length, char[] chars, Random rand) {
-        String password = "";
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
-            password += chars[rand.nextInt(chars.length)];
+            sb.append(chars[rand.nextInt(chars.length)]);
         }
-        return password;
+
+        return sb.toString();
     }
 
     private static boolean hasNumber(String password) { //checks if the password has a number

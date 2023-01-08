@@ -3,11 +3,9 @@ package com.company;
 import static com.company.Main.menu;
 
 public class Q4 {
-
-    public static void run() {
+    public static void run(){
         main(null);
     }
-
     public static void main(String[] args) {
         double a = Main.getDouble("Enter the value of a: ");
         double b = Main.getDouble("Enter the value of b: ");

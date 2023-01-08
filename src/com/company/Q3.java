@@ -3,7 +3,6 @@ package com.company;
 import static com.company.Main.menu;
 
 public class Q3 {
-
     public static void run(){
         main(null);
     }

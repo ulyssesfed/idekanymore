@@ -34,7 +34,7 @@ public class Q8 {
         // Higher rate threshold for the tax year 2021-2022
         final double HIGHER_RATE_THRESHOLD = 150000;
 
-        double tax = 0;
+        double tax;
 
         if (income <= PERSONAL_ALLOWANCE_THRESHOLD) {
             // No tax is due on income within the personal allowance threshold

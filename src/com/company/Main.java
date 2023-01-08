@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class Main {
-    static int loginfails = 0;
 
     public static void main(String[] args) {
     loginLoop();
@@ -69,11 +68,11 @@ public class Main {
     static void menu() { // the menu
         System.out.println("Welcome to this demonstration");
         System.out.println("__________________________________");
-        System.out.println("| 1. Euclids algorithm           |");
+        System.out.println("| 1. Euclid's algorithm          |");
         System.out.println("| 2. Anagram                     |");
         System.out.println("| 3. tic tac toe (2player)       |");
         System.out.println("| 4. Quadratic solver            |");
-        System.out.println("| 5. Passord generator           |");
+        System.out.println("| 5. Password generator           |");
         System.out.println("| 6. Fibonacci sequence          |");
         System.out.println("| 7. pascals triangle(wip)       |");
         System.out.println("| 8. Tax calculator              |");

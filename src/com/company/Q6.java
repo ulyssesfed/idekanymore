@@ -1,6 +1,9 @@
 package com.company;
 
 public class Q6 {
+    public static void run(){
+        main(null);
+    }
     public static void main(String[] args) {
         int numTerms = Main.getInt("Enter the number of terms");
 
