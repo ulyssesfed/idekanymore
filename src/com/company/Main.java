@@ -72,11 +72,12 @@ public class Main {
         System.out.println("| 2. Anagram                     |");
         System.out.println("| 3. tic tac toe (2player)       |");
         System.out.println("| 4. Quadratic solver            |");
-        System.out.println("| 5. Password generator           |");
+        System.out.println("| 5. Password generator          |");
         System.out.println("| 6. Fibonacci sequence          |");
         System.out.println("| 7. pascals triangle(wip)       |");
         System.out.println("| 8. Tax calculator              |");
-        System.out.println("| 9. Exit                        |");
+        System.out.println("| 9. roman numerals              |");
+        System.out.println("| 10. exit                       |");
         System.out.println("|________________________________|");
         String choice = getString("Enter your choice: "); // gets the users choice
         choice(choice); // calls the choice method
@@ -84,7 +85,7 @@ public class Main {
     private static void choice(String choice){
         String className = "com.company.Q" + choice;
 
-        if (choice.equals("9")) {
+        if (choice.equals("10")) {
             System.exit(0);
         }
 
