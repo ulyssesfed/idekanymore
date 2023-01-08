@@ -8,29 +8,29 @@ public class Q5 {
         main(null);
     }
     public static void main(String[] args) {
-        Random rand = new Random(); //creates a random object
-        var password = ""; //creates a string for the password
-        int length = Main.getInt("Enter the length of the password"); //gets the length of the password from the user
-        while (length < 8) { //checks if the length is less than 8
-            System.out.println("The password must be at least 8 characters long"); //prints an error message
-            length = Main.getInt("Enter the length of the password"); //gets the length of the password from the user
+        Random rand = new Random();
+        int length = Main.getInt("Enter the length of the password");
+        while (length < 8) {
+            System.out.println("The password must be at least 8 characters long");
+            length = Main.getInt("Enter the length of the password");
         }
-        char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+~`|}{[]:;?><,.\\/-=12345678908" //creates an array of characters
-                .toCharArray(); //converts the string to an array of characters
-        for (int i = 0; i < length; i++) { //loops through the length of the password
-            password += chars[rand.nextInt(chars.length)]; //adds a random character to the password
+        char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+~`|}{[]:;?><,.\\/-=12345678908".toCharArray();
+        String password = generatePassword(length, chars, rand);
+        while (!hasNumber(password) || !hasSpecial(password) || !hasCapital(password)) {
+            password = generatePassword(length, chars, rand);
         }
-        while (!hasNumber(password) || !hasSpecial(password) || !hasCapital(password)) { //checks if the password has a number, special character, and capital letter
-            password = ""; //resets the password
-            for (int i = 0; i < length; i++) { //loops through the length of the password
-                password += chars[rand.nextInt(chars.length)]; //adds a random character to the password
-            } //loops until the password has a number, special character, and capital letter
-        } 
-        System.out.println(password); //prints the password
-
-        Main.menu(); //calls the menu method
-
+        System.out.println(password);
+        Main.menu();
     }
+
+    private static String generatePassword(int length, char[] chars, Random rand) {
+        String password = "";
+        for (int i = 0; i < length; i++) {
+            password += chars[rand.nextInt(chars.length)];
+        }
+        return password;
+    }
+
     private static boolean hasNumber(String password) { //checks if the password has a number
         for (int i = 0; i < password.length(); i++) { //loops through the password
             if (Character.isDigit(password.charAt(i))) { //checks if the character is a number 
