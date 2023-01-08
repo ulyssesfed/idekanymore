@@ -10,17 +10,24 @@ public class Main {
     loginLoop();
 }
 
-public static void loginLoop() {
-    int loginfails = 0;
-    while (loginfails < 3) {
-        if (login(getString("username"), getString("Password: "))) {
-            menu();
-        } else {
-            loginfails++;
+    public static void loginLoop() {
+        int loginAttempts = 0;
+        while (loginAttempts < 3) {
+            String username = getString("Username: ");
+            String password = getString("Password: ");
+
+            if (login(username, password)) {
+                menu();
+                return;
+            } else {
+                loginAttempts++;
+            }
         }
+
+        System.out.println("Maximum number of login attempts exceeded. Exiting program.");
+        System.exit(0);
     }
-    System.exit(0);
-}
+
 
     static int getInt(String prompt) { // gets an integer from the user
         Scanner scanner = new Scanner(System.in);
@@ -46,16 +53,18 @@ public static void loginLoop() {
                 { "user", "user" },
                 { "guest", "guest" }
         };
-        for (int i = 0; i < users.length; i++) { // loops through the array of users
-            if (users[i][0].equals(username) && users[i][1].equals(password)) { // checks if the username and password
-                                                                                System.out.println("User " + username + " logged in."); // logs the user in
-                return true; // returns true if the username and password match
+
+        for (String[] user : users) {
+            if (user[0].equals(username) && user[1].equals(password)) {
+                System.out.println("User " + username + " logged in.");
+                return true;
             }
         }
-        System.out.println("User " + username + " failed to log in."); // logs that the user failed to log in
-        return false; // if the username and password don't match, it returns false
 
+        System.out.println("User " + username + " failed to log in.");
+        return false;
     }
+
 
     static void menu() { // the menu
         System.out.println("Welcome to this demonstration");
