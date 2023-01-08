@@ -1,25 +1,40 @@
 package com.company;
 
 public class Q6 {
-
-
-    public static void run(){
-        main(null);
-    }
     public static void main(String[] args) {
-        int n = Main.getInt("Enter the number of terms"); //gets the number of terms from the user
-        int a = 0; //creates a variable for the first term
-        int b = 1; //creates a variable for the second term
-        int c = 0; //creates a variable for the third term
-        System.out.print(a + " " + b + " "); //prints the first two terms
-        for (int i = 0; i < n - 2; i++) { //for loop that runs n - 2 times
-            c = a + b; //calculates the third term
-            System.out.print(c + " "); //prints the third term
-            a = b; //sets a to b
-            b = c; //sets b to c
+        int numTerms = Main.getInt("Enter the number of terms");
+
+        if (numTerms < 1) {
+            System.out.println("The number of terms must be at least 1.");
+            return;
         }
-        System.out.println(); //prints a new line
-        Main.menu(); //calls the menu method
+
+        int a = 0;
+        int b = 1;
+
+        System.out.print(a + " ");
+
+        if (numTerms == 1) {
+            return;
+        }
+
+        System.out.print(b + " ");
+
+        if (numTerms == 2) {
+            return;
+        }
+
+        for (int i = 2; i < numTerms; i++) {
+            int c = a + b;
+            System.out.print(c + " ");
+            a = b;
+            b = c;
+        }
+
+        System.out.println();
+
+        Main.menu();
     }
-    
+
+
 }

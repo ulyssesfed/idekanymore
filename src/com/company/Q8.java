@@ -7,39 +7,52 @@ public class Q8 {
         main(null);
     }
     public static void main(String[] args) {
-        // tax calculator for the uk that takes into account the tax free allowance and the tax bands and allows the user to enter the amount of income
+        double income = 0;
 
-        double income = 0; //creates a variable for the income
-        System.out.println("woul dyou like calculate your total income from your hourly wage or your annual wage?"); // asks the user if they want to calculate their income from their hourly wage or their annual wage
-        String answer = Main.getString("enter hourly or annual"); // gets the answer from the user
-        if (answer.equals("hourly")) { // if the answer is hourly
-            double hourlywage = Main.getDouble("enter your hourly wage"); // gets the hourly wage from the user
-            double hoursPerDay = Main.getDouble("enter the number of hours you work per day"); // gets the number of hours worked per day from the user
-            double daysworked = Main.getDouble("enter the number of days you worked per week"); // gets the number of hours worked from the user
-            int daysOff = Main.getInt("enter the number of days you have taken off through the year"); // gets the number of days off from the user
-            income = (hourlywage * ((daysworked*hoursPerDay)*52)+hourlywage*hoursPerDay) - (hourlywage*hoursPerDay)*daysOff; // calculates the income
-        } else if (answer.equals("annual")) { // if the answer is annual
-            income = Main.getDouble("enter your annual wage"); // gets the annual wage from the user
-        } else { // if the answer is not hourly or annual
-            System.out.println("invalid answer"); // prints invalid answer
-            System.out.println("try again");
-            main(args); // restarts the program
-        }
-        double tax = 0; //creates a variable for the tax
-        if (income <= 12500) { //checks if the income is less than or equal to the tax free allowance
-            tax = 0; //sets the tax to 0
-        } else if (income <= 50000) { //checks if the income is less than or equal to the first tax band
-            tax = (income - 12500) * 0.2; //calculates the tax
-        } else if (income <= 150000) { //checks if the income is less than or equal to the second tax band
-            tax = 7500 + (income - 50000) * 0.4; //calculates the tax
-        } else { //checks if the income is greater than the second tax band
-            tax = 47500 + (income - 150000) * 0.45; //calculates the tax
-        }
-        System.out.println("your total income is £" + income); //prints the income
-        System.out.println("The tax is £" + tax); //prints the tax
+        System.out.println("Would you like to calculate your total income from your hourly wage or your annual wage?");
+        String answer = Main.getString("Enter 'hourly' or 'annual'");
 
-        System.out.println("your remaining income is £" + (income - tax)); //prints the remaining income
-        Main.menu(); //calls the menu method
+        if (answer.equals("hourly")) {
+            double hourlyWage = Main.getDouble("Enter your hourly wage");
+            double hoursPerDay = Main.getDouble("Enter the number of hours you work per day");
+            double daysWorked = Main.getDouble("Enter the number of days you worked per week");
+            int daysOff = Main.getInt("Enter the number of days you have taken off this year");
+            income = (hourlyWage * ((daysWorked * hoursPerDay) * 52) + hourlyWage * hoursPerDay) - (hourlyWage * hoursPerDay) * daysOff;
+        } else if (answer.equals("annual")) {
+            income = Main.getDouble("Enter your annual wage");
+        } else {
+            System.out.println("Invalid answer. Try again.");
+            main(args);
+        }
+
+        // Personal allowance threshold for the tax year 2021-2022
+        final double PERSONAL_ALLOWANCE_THRESHOLD = 12500;
+
+        // Basic rate threshold for the tax year 2021-2022
+        final double BASIC_RATE_THRESHOLD = 50000;
+
+        // Higher rate threshold for the tax year 2021-2022
+        final double HIGHER_RATE_THRESHOLD = 150000;
+
+        double tax = 0;
+
+        if (income <= PERSONAL_ALLOWANCE_THRESHOLD) {
+            // No tax is due on income within the personal allowance threshold
+            tax = 0;
+        } else if (income <= BASIC_RATE_THRESHOLD) {
+            // Calculate the tax due on income within the basic rate threshold
+            tax = (income - PERSONAL_ALLOWANCE_THRESHOLD) * 0.2;
+        } else if (income <= HIGHER_RATE_THRESHOLD) {
+            // Calculate the tax due on income within the higher rate threshold
+            tax = (BASIC_RATE_THRESHOLD - PERSONAL_ALLOWANCE_THRESHOLD) * 0.2 + (income - BASIC_RATE_THRESHOLD) * 0.4;
+        } else {
+            // Calculate the tax due on income within the additional rate threshold
+            tax = (HIGHER_RATE_THRESHOLD - BASIC_RATE_THRESHOLD) * 0.4 + (income - HIGHER_RATE_THRESHOLD) * 0.45;
+        }
+
+
+        System.out.println("Your total income is £" + income);
+        System.out.println("Your total tax is £" + tax);
+        System.out.println("Your net income is £" + (income - tax));
     }
-
 }
