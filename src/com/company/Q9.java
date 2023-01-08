@@ -1,74 +1,45 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Q9 {
 public static void run(){
         main(null);
     }
     public static void main(String[] args) {
-        //a method that converts an integer to its roman numeral equivalent
-        int num = Main.getInt("Enter a number between 1 and 3999: ");
-        if (num < 1 || num > 3999) {
-            System.out.println("The number must be between 1 and 3999.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number between 1 and 3999: ");
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Error: not an integer.");
             return;
         }
+
+        int num = scanner.nextInt();
+        if (num < 1 || num > 3999) {
+            System.out.println("Error: number must be between 1 and 3999.");
+            return;
+        }
+
         System.out.println(num + " is " + toRoman(num) + " in Roman numerals.");
     }
+
     public static String toRoman(int num) {
-        String roman = "";
-        while (num >= 1000) {
-            roman += "M";
-            num -= 1000;
+        StringBuilder roman = new StringBuilder();
+
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] numerals = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        for (int i = 0; i < values.length; i++) {
+            while (num >= values[i]) {
+                roman.append(numerals[i]);
+                num -= values[i];
+            }
         }
-        while (num >= 900) {
-            roman += "CM";
-            num -= 900;
-        }
-        while (num >= 500) {
-            roman += "D";
-            num -= 500;
-        }
-        while (num >= 400) {
-            roman += "CD";
-            num -= 400;
-        }
-        while (num >= 100) {
-            roman += "C";
-            num -= 100;
-        }
-        while (num >= 90) {
-            roman += "XC";
-            num -= 90;
-        }
-        while (num >= 50) {
-            roman += "L";
-            num -= 50;
-        }
-        while (num >= 40) {
-            roman += "XL";
-            num -= 40;
-        }
-        while (num >= 10) {
-            roman += "X";
-            num -= 10;
-        }
-        while (num >= 9) {
-            roman += "IX";
-            num -= 9;
-        }
-        while (num >= 5) {
-            roman += "V";
-            num -= 5;
-        }
-        while (num >= 4) {
-            roman += "IV";
-            num -= 4;
-        }
-        while (num >= 1) {
-            roman += "I";
-            num -= 1;
-        }
-        return roman;
+
+        return roman.toString();
     }
+
 
 
 
