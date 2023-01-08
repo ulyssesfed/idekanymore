@@ -7,10 +7,17 @@ public static void run(){
         main(null);
     }
     public static void main(String[] args) {
-        System.out.println("do you want to convert an int to nuerals(1) or numerals to int(2)");
-        int choice = Main.getInt("Enter your choice: ");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to convert an integer to a Roman numeral (1) or a Roman numeral to an integer (2)?");
+        System.out.print("Enter your choice: ");
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Error: not an integer.");
+            return;
+        }
+
+        int choice = scanner.nextInt();
         if (choice == 1) {
-            Scanner scanner = new Scanner(System.in);
             System.out.print("Enter a number between 1 and 3999: ");
 
             if (!scanner.hasNextInt()) {
@@ -25,10 +32,8 @@ public static void run(){
             }
 
             System.out.println(num + " is " + toRoman(num) + " in Roman numerals.");
-
-            Main.menu();
         } else if (choice == 2) {
-            Scanner scanner = new Scanner(System.in);
+            scanner.nextLine(); // consume the remaining newline character
             System.out.print("Enter a Roman numeral: ");
 
             String roman = scanner.nextLine();
@@ -39,14 +44,11 @@ public static void run(){
             }
 
             System.out.println(roman + " is " + num + " in Arabic numerals.");
-
-            Main.menu();
         } else {
             System.out.println("Error: invalid choice.");
-            return;
-
         }
     }
+
     public static String toRoman(int num) {
         StringBuilder roman = new StringBuilder();
 
@@ -64,46 +66,49 @@ public static void run(){
     }
     public static int fromRoman(String roman) {
         int num = 0;
+        int lastValue = 0;
 
-        int[] values = {1000, 500, 100, 50, 10, 5, 1};
-        char[] numerals = {'M', 'D', 'C', 'L', 'X', 'V', 'I'};
-
-        for (int i = 0; i < roman.length(); i++) {
+        for (int i = roman.length() - 1; i >= 0; i--) {
             char c = roman.charAt(i);
-            int value = 0;
+            int value;
 
-            for (int j = 0; j < numerals.length; j++) {
-                if (c == numerals[j]) {
-                    value = values[j];
+            switch (c) {
+                case 'M':
+                    value = 1000;
                     break;
-                }
+                case 'D':
+                    value = 500;
+                    break;
+                case 'C':
+                    value = 100;
+                    break;
+                case 'L':
+                    value = 50;
+                    break;
+                case 'X':
+                    value = 10;
+                    break;
+                case 'V':
+                    value = 5;
+                    break;
+                case 'I':
+                    value = 1;
+                    break;
+                default:
+                    return -1;
             }
 
-            if (value == 0) {
-                return -1;
+            if (value < lastValue) {
+                num -= value;
+            } else {
+                num += value;
             }
-
-            if (i + 1 < roman.length()) {
-                char next = roman.charAt(i + 1);
-                int nextValue = 0;
-
-                for (int j = 0; j < numerals.length; j++) {
-                    if (next == numerals[j]) {
-                        nextValue = values[j];
-                        break;
-                    }
-                }
-
-                if (nextValue > value) {
-                    value *= -1;
-                }
-            }
-
-            num += value;
+            lastValue = value;
         }
 
         return num;
     }
+
 
 
 
