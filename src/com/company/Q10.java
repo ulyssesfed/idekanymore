@@ -2,6 +2,9 @@ package com.company;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,34 +22,27 @@ public class Q10 {
         calculateValue(words, charString);
     }
     
-    public static char[] tochars(String[] chars){
-        char[] char1 = new char[chars.length];
-        for (int i = 0; i < chars.length; i++) {
-            char1[i] = chars[i].charAt(0);
-        }
-        return char1;
+    public static char[] tochars(String[] chars) {
+        return chars[0].toCharArray();
     }
-    public static String[] getChars(){
+    
+    public static char[] getChars(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a list of letters");
-        String input = scanner.nextLine();
-        String[] chars = input.split("");
-        return chars;
+        return scanner.nextLine().toCharArray();
     }
-    public static String[] getFile() {
-        File file = new File("src/com/company/words.txt");
-        List<String> wordsList = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                wordsList.add(scanner.nextLine());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return wordsList.toArray(new String[0]);
+public static String[] getFile() {
+    String filePath = "src/com/company/words.txt";
+    try {
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        return lines.toArray(new String[0]);
+    } catch (IOException e) {
+        System.err.println("An error occurred while reading the file: " + e.getMessage());
+        return new String[0];
     }
+}
+
     public static void calculateValue(String[] words, String inputChars) {
         int max = 0;
         String maxWord = "";
